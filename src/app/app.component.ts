@@ -26,6 +26,17 @@ export class AppComponent {
     }
   }
 
+  onChangeById(worker){
+    //если мы ничего не писали в поле при замене, то оно и не заменится.
+    if (worker[1]!=undefined&&worker[1]!=""){
+      this.workers[worker[0]-1].name=worker[1];
+    }
+    if (worker[2]!=undefined&&worker[2]!=""){
+      this.workers[worker[0]-1].surname=worker[2];
+    }
+
+  }
+
   onAddWorker(worker) {
     let id =
       this.workers.length > 0

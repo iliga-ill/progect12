@@ -6,6 +6,7 @@ import { MyWorkerType, MyWorker } from 'src/app/shared/worker.model';
   templateUrl: './addform-worker.component.html',
   styleUrls: ['./addform-worker.component.css'],
 })
+
 export class AddformWorkerComponent implements OnInit {
   myWorkerType = MyWorkerType;
   name: string;
@@ -19,10 +20,16 @@ export class AddformWorkerComponent implements OnInit {
   ngOnInit(): void {}
 
   onAddWorker() {
-    this.addWorker.emit({
-      name: this.name,
-      surname: this.surname,
-      type: this.type,
-    });
+    //если попробовать отправить пустой текст со старта программы, то приходит undefined,
+    //а если что-то написать и удалить, то просто пустой текст "" 
+    if (this.name==undefined||this.name==""||this.surname==undefined||this.surname==""){
+      alert("Заполните все поля");
+    }else{
+      this.addWorker.emit({
+        name: this.name,
+       surname: this.surname,
+        type: this.type,
+     });
+    }
   }
 }

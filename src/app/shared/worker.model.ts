@@ -1,3 +1,5 @@
+import { summaryForJitFileName } from '@angular/compiler/src/aot/util';
+
 export interface MyWorker {
   id?: number;
   name: string;
