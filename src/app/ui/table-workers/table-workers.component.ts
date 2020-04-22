@@ -40,6 +40,8 @@ export class TableWorkersComponent implements OnInit {
     }
 
     if (this.numb==0){
+      this.ChangeName = this.workers[this.workers.findIndex((worker) => worker.id === id)].name 
+      this.ChangeSurname = this.workers[this.workers.findIndex((worker)=> worker.id === id)].surname
       this.numb+=1;
     }else if(this.numb==1){
       this.changeWorker.emit([id,this.ChangeName,this.ChangeSurname]);

@@ -21,7 +21,7 @@ export class AddformWorkerComponent implements OnInit {
 
   onAddWorker() {
     //если попробовать отправить пустой текст со старта программы, то приходит undefined,
-    //а если что-то написать и удалить, то просто пустой текст "" 
+    //а если что-то написать и удалить, то просто пустой текст "" gfg;
     if (this.name==undefined||this.name==""||this.surname==undefined||this.surname==""){
       alert("Заполните все поля");
     }else{

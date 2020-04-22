@@ -27,7 +27,8 @@ export class AppComponent {
   }
 
   onChangeById(worker){
-    //если мы ничего не писали в поле при замене, то оно и не заменится.
+    //если мы ничего не писали в поле при замене, то оно и не
+    
     if (worker[1]!=undefined&&worker[1]!=""){
       this.workers[worker[0]-1].name=worker[1];
     }
