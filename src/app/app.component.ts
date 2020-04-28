@@ -28,12 +28,14 @@ export class AppComponent {
 
   onChangeById(worker){
     //если мы ничего не писали в поле при замене, то оно и не
-    
-    if (worker[1]!=undefined&&worker[1]!=""){
-      this.workers[worker[0]-1].name=worker[1];
+    if (worker.name!=undefined&&worker.name!=""){
+      this.workers[worker.id-1].name=worker.name;
     }
-    if (worker[2]!=undefined&&worker[2]!=""){
-      this.workers[worker[0]-1].surname=worker[2];
+    if (worker.surname!=undefined&&worker.surname!=""){
+      this.workers[worker.id-1].surname=worker.surname;
+    }
+    if (worker.telephone!=undefined&&worker.telephone!=""){
+      this.workers[worker.id-1].telephone=worker.telephone;
     }
 
   }
