@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MyWorker } from 'src/app/shared/worker.model';
 import { ElementFinder } from 'protractor';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { worker } from 'cluster';
 
 //отключение кнопки при неправильном заполнении
 
@@ -54,7 +55,7 @@ export class TableWorkersComponent {
    * передаются в корневой компонент, где присваиваются эл-ту массива.
    */
 
-  onChangeWorker(id: number) {
+  onChangeWorker(id: number,worker:any) {
     if (id!=this.lastId){
       this.numb=0;
       this.lastId=id;
@@ -66,8 +67,9 @@ export class TableWorkersComponent {
       this.CangeTelephone=this.workers[this.workers.findIndex((worker)=> worker.id === id)].telephone
       this.numb+=1;
     }else if(this.numb==1){
-      let push=this.ChangeForm.value;
+      let push:MyWorker=this.ChangeForm.value;
       push.id=id;
+      push.type=worker.type;
       this.changeWorker.emit(push);
       this.ChangeForm.reset();
       this.lastId=null;

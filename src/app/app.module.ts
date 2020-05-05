@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule }   from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -16,6 +17,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>)=null;
   imports: [
     NgxMaskModule.forRoot(),
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     NgbModule,
     BrowserAnimationsModule,

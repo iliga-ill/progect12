@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {
   MyWorker,
-  MyWorkersDatabase,
   MyWorkerType,
 } from './shared/worker.model';
+import { WorkerService } from './shared/worker.service';
 
 @Component({
   selector: 'app-root',
@@ -12,40 +12,63 @@ import {
 })
 export class AppComponent {
   title = 'Список сотрудников';
-  workers: MyWorker[] = MyWorkersDatabase;
+  workers: MyWorker[]=[];
   myWorkerType = MyWorkerType;
+
+  /*
+    { "id": 1, "name": "Иван", "surname": "Иванов","telephone": "+7(917) 448-2028", "type": 0 },
+    { "id": 2, "name": "Петр", "surname": "Петров","telephone": "+7(917) 448-2028", "type": 1 },
+    { "id": 3, "name": "Сидор", "surname": "Сидоров","telephone": "+7(917) 448-2028", "type": 2 },
+    { "id": 4, "name": "Василий", "surname": "Васильев","telephone": "+7(917) 448-2028", "type": 3 }
+  */
+
+  constructor(public worker:WorkerService){
+    this.getData();
+  }
+
+  async getData() {
+    try {
+      this.workers = await this.worker.getData();
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   getByType(type: number) {
     return this.workers.filter((worker) => worker.type === type);
   }
 
-  onDeleteById(id: number) {
-    let index = this.workers.findIndex((worker) => worker.id === id);
-    if (index !== -1) {
-      this.workers.splice(index, 1);
+  async onDeleteById(id: number) {
+    try {
+      await this.worker.onDeleteById(id);
+      this.getData();
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
+
+  async onChangeById(worker){
+    console.log(worker);
+    try {
+      await this.worker.changeWorker(worker);
+      this.getData();
+    } catch (error) {
+      console.log(error);
     }
   }
 
-  onChangeById(worker){
-    //если мы ничего не писали в поле при замене, то оно и не
-    if (worker.name!=undefined&&worker.name!=""){
-      this.workers[worker.id-1].name=worker.name;
-    }
-    if (worker.surname!=undefined&&worker.surname!=""){
-      this.workers[worker.id-1].surname=worker.surname;
-    }
-    if (worker.telephone!=undefined&&worker.telephone!=""){
-      this.workers[worker.id-1].telephone=worker.telephone;
-    }
-
-  }
-
-  onAddWorker(worker) {
+  async onAddWorker(worker) {
     let id =
       this.workers.length > 0
         ? this.workers[this.workers.length - 1].id + 1
         : 0;
     worker.id = id;
-    this.workers.push(worker);
+    try {
+      await this.worker.onAddWorker(worker);
+      this.getData();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

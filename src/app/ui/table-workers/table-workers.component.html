@@ -22,7 +22,7 @@
                   <td>{{ worker.surname }}</td>
                   <td>{{ worker.telephone }}</td>
                   <td>
-                    <button class="btn btn-outline-info btn-sm" (click)="onChangeWorker(worker.id)">Изменить</button> 
+                    <button class="btn btn-outline-info btn-sm" (click)="onChangeWorker(worker.id,worker)">Изменить</button> 
                   </td>
                 </ng-container>
                 <ng-container *ngIf="lastId == worker.id" [formGroup]="ChangeForm">
@@ -30,7 +30,7 @@
                   <td><input [style.width]="'150px'" [(ngModel)]="ChangeSurname" type="text" formControlName="surname"/></td>
                   <td><input [style.width]="'200px'" [(ngModel)]="CangeTelephone" type="text" formControlName="telephone" mask="+0(000) 000-0000" [dropSpecialCharacters]="false"/></td>
                   <td>
-                    <button class="btn btn-outline-success btn-sm" (click)="onChangeWorker(worker.id)" [disabled]="ChangeForm.invalid">Принять</button>
+                    <button class="btn btn-outline-success btn-sm" (click)="onChangeWorker(worker.id,worker)" [disabled]="ChangeForm.invalid">Принять</button>
                   </td>
                 </ng-container>
                 <td>
