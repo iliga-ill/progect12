@@ -37,15 +37,9 @@ export class AddformWorkerComponent implements OnInit {
   ngOnInit(): void {}
 
   onAddWorker() {
-    //если попробовать отправить пустой текст со старта программы, то приходит undefined,
-    //а если что-то написать и удалить, то просто пустой текст "";
-    if (this.ChangeForm.value.name==undefined||this.ChangeForm.value.name==""||this.ChangeForm.value.surname==undefined||this.ChangeForm.value.surname==""){
-      alert("Заполните все поля");
-    }else{
       let push=this.ChangeForm.value;
       push.type=this.type;
       this.addWorker.emit(push);
       this.ChangeForm.reset();
-    }
   }
 }

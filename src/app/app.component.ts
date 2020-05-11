@@ -4,16 +4,27 @@ import {
   MyWorkerType,
 } from './shared/worker.model';
 import { WorkerService } from './shared/worker.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+
+
+interface searchStr {
+  id:string;
+  name:string;
+  surname:string;
+  telephone:string;
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent {
   title = 'Список сотрудников';
   workers: MyWorker[]=[];
   myWorkerType = MyWorkerType;
+  searchStr: FormGroup;
 
   /*
     { "id": 1, "name": "Иван", "surname": "Иванов","telephone": "+7(917) 448-2028", "type": 0 },
@@ -23,6 +34,12 @@ export class AppComponent {
   */
 
   constructor(public worker:WorkerService){
+    this.searchStr = new FormGroup({
+      id: new FormControl(null,[Validators.required]),
+      name: new FormControl(null,[Validators.required]),
+      surname: new FormControl(null,[Validators.required]),
+      telephone: new FormControl(null,[Validators.required])
+    });
     this.getData();
   }
 
@@ -49,7 +66,6 @@ export class AppComponent {
   }
 
   async onChangeById(worker){
-    console.log(worker);
     try {
       await this.worker.changeWorker(worker);
       this.getData();

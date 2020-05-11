@@ -9,11 +9,12 @@ import { AppComponent } from './app.component';
 import { TableWorkersComponent } from './ui/table-workers/table-workers.component';
 import { AddformWorkerComponent } from './ui/addform-worker/addform-worker.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PipePipe } from './shared/pipes/pipe.pipe';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>)=null;
 
 @NgModule({
-  declarations: [AppComponent, TableWorkersComponent, AddformWorkerComponent],
+  declarations: [AppComponent, TableWorkersComponent, AddformWorkerComponent, PipePipe],
   imports: [
     NgxMaskModule.forRoot(),
     BrowserModule,
@@ -22,7 +23,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>)=null;
     NgbModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
