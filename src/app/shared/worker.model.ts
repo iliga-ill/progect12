@@ -1,16 +1,19 @@
 import { summaryForJitFileName } from '@angular/compiler/src/aot/util';
 
 export interface MyWorker {
-  id?: number;
+  id: number;
   name: string;
   surname: string;
+  patronimic:string;
+  date:string;
+  email:string;
   telephone: string;
   type: number;
 }
 
 export enum MyWorkerType {
-  programmer,
-  designer,
-  copywriter,
-  manager,
+  ItDepartment,
+  Selldepartment,
+  DeliveryDepartment,
+  LegalDepartment,
 }

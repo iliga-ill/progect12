@@ -9,7 +9,7 @@ import { MyWorker } from './worker.model';
 
 export class WorkerService {
 
-  
+  onWorker:MyWorker;
 
   path="http://localhost:3000/workers";
 
@@ -34,5 +34,12 @@ export class WorkerService {
     return this.http.put(url, worker).toPromise()
   }
 
+  set(worker){
+    this.onWorker=worker;
+  }
+
+  get(){
+    return this.onWorker;
+  }
 
 }

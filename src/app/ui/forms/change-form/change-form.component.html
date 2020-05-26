@@ -1,0 +1,81 @@
+<div class="row">
+
+  <div class="col-10 row" *ngIf="onChange==false">
+    <!--<th class="border border-primary rounded">-->
+    <div class="col-12 row mt-3">
+        <div class="col-6 ">Имя: {{ OpenWorker.name }}</div>
+        <div class="col-6 ">Возраст: {{ getAge(OpenWorker.date) }}</div>
+    </div>
+    <div class="col-12 row mt-3">
+        <div class="col-6 ">Фамилия: {{ OpenWorker.surname }}</div>
+        <div class="col-6 ">Др: {{ OpenWorker.date }}</div>
+    </div>
+    <div class="col-12 row mt-3">
+        <div class="col-6 ">Отчество: {{ OpenWorker.patronimic }}</div>
+        <div class="col-6 ">Email: {{ OpenWorker.email }}</div>
+    </div>
+    <div class="col-12 row mt-3">
+        <div class="col-6 ">Отдел: {{Type(OpenWorker.type)}}</div>
+        <div class="col-6 ">Телефон: {{ OpenWorker.telephone }}</div>
+    </div>
+    <div class="col-5 mt-3"></div>
+    <div class="col-1 mt-3 mr-3 ">
+      <button class="btn btn-outline-success btn-sm" (click)="onChangeWorker()">Изменить</button>
+    </div>
+    <div class="col-1 mt-3 mr-1">
+        <button class="btn btn-outline-success btn-sm" routerLink="/Worker list">Назад</button>
+    </div>
+    <div class="col-2 mt-3 ">
+        <button class="btn btn-outline-danger btn-sm" (click)="onDeleteById(OpenWorker.id)">Удалить</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="col-10 row" *ngIf="onChange==true">
+    <!--<th class="border border-primary rounded">-->
+    <div [formGroup]="ChangeForm" class="col-12 row">
+    <div class="col-12 row mt-2">
+        <div class="col-6 ">Имя: <input  [(ngModel)]="ChangeName" type="text" formControlName="name"/></div>
+        <div class="col-6 ">Возраст: {{CangeAge}}</div>
+    </div>
+    <div class="col-12 row mt-2">
+        <div class="col-6 "><a>Фамилия:</a> <input  [(ngModel)]="ChangeSurname" type="text" formControlName="surname"/></div>
+        <div class="col-6 ">Др: <input [(ngModel)]="CangeDate" type="text" formControlName="date" mask="00/00/0000" [dropSpecialCharacters]="false"/></div>
+    </div>
+    <div class="col-12 row mt-2">
+        <div class="col-6">Отчество: <input  [formGroup]="ChangeForm" [(ngModel)]="ChangePatronimic" type="text" formControlName="patronimic" /></div>
+        <div class="col-6">Email: <input [(ngModel)]="CangeEmail" type="text" formControlName="email" mask="A*@A*.SSS" [dropSpecialCharacters]="false"/></div>
+    </div>
+    </div>
+    <div class="col-12 row mt-2">
+        <div class="col-6 row">
+        <div class="col-2">Отдел:</div> 
+            <select class="col-8 custom-select" [(ngModel)]="type">
+            <option [ngValue]="myWorkerType.ItDepartment">IT отдел</option>
+            <option [ngValue]="myWorkerType.Selldepartment">Отдел продаж</option>
+            <option [ngValue]="myWorkerType.DeliveryDepartment">Отдел доставки</option>
+            <option [ngValue]="myWorkerType.LegalDepartment">Юридический отдел</option>
+          </select>
+        </div>
+        <div class="col-6">Телефон: <input [(ngModel)]="CangeTelephone" type="text" mask="+0(000) 000-0000" [dropSpecialCharacters]="false"/></div>
+    </div>
+    <div class="col-5 mt-2"></div>
+    <div class="col-1 mt-2 mr-1">
+        <button class="btn btn-outline-success btn-sm" (click)="onSubmitChanges()" [disabled]="ChangeForm.invalid">Принять</button>
+    </div>
+    <div class="col-1 mt-2">
+        <button class="btn btn-outline-success btn-sm" (click)="back()">Назад</button>
+    </div>
+    <div class="col-1 mt-2">
+        <button class="btn btn-outline-danger btn-sm" (click)="onDeleteById(OpenWorker.id)">Удалить</button>
+    </div>
+  </div>
+</div>

@@ -1,46 +1,134 @@
 {
   "workers": [
     {
-      "name": "1",
-      "surname": "1",
-      "telephone": "+5(123) 563-2157",
+      "name": "Родис",
+      "surname": "Вородис",
+      "patronimic": "Чивородис",
+      "date": "27/05/1982",
+      "email": "vorodis@mail.ru",
       "id": 1,
-      "type": 0
+      "type": 3,
+      "telephone": "+7(234) 573-4243"
     },
     {
-      "name": "Петр",
-      "surname": "Петров",
-      "telephone": "+7(917) 133-3333",
-      "id": 2,
-      "type": 1
-    },
-    {
-      "id": 3,
       "name": "Сидор",
       "surname": "Сидоров",
-      "telephone": "+7(917) 448-2028",
-      "type": 2
+      "patronimic": "Сидорович",
+      "date": "25/12/1945",
+      "email": "sidoro@mail.ru",
+      "id": 2,
+      "type": 3,
+      "telephone": "+7(234) 573-4243"
     },
     {
-      "id": 4,
+      "name": "Сидор",
+      "surname": "Сидоров",
+      "patronimic": "Сидорович",
+      "date": "25/12/1975",
+      "email": "sidoro@mail.ru",
+      "id": 3,
+      "type": 2,
+      "telephone": "+7(234) 573-4243"
+    },
+    {
       "name": "Василий",
       "surname": "Васильев",
-      "telephone": "+7(917) 448-2028",
-      "type": 3
+      "patronimic": "Васильевич",
+      "date": "25/12/1981",
+      "email": "vasilev@mail.ru",
+      "id": 4,
+      "type": 3,
+      "telephone": "+7(624) 575-8676"
     },
     {
-      "name": "1",
-      "surname": "1",
-      "telephone": "+1(512) 544-6231",
-      "type": 2,
-      "id": 5
+      "name": "Измененный",
+      "surname": "Карась",
+      "patronimic": "Иванович",
+      "date": "25/12/2000",
+      "email": "changed@change.ch",
+      "id": 5,
+      "type": 1,
+      "telephone": "+7(777) 777-7777"
     },
     {
       "name": "1",
       "surname": "Петров",
-      "telephone": "+1(123) 531-5436",
+      "patronimic": "1сильевич",
+      "date": "25/12/1978",
+      "email": "1silevich@mail.ru",
+      "id": 6,
       "type": 3,
-      "id": 6
+      "telephone": "+7(635) 908-2133"
+    },
+    {
+      "name": "П",
+      "surname": "ПП",
+      "patronimic": "П",
+      "date": "25/12/1966",
+      "email": "1@1.AAA",
+      "id": 7,
+      "type": 0,
+      "telephone": "+7(635) 908-2133"
+    },
+    {
+      "name": "12",
+      "surname": "234",
+      "patronimic": "Алексеевич",
+      "date": "25/12/1934",
+      "email": "1@1.AAA",
+      "id": 8,
+      "type": 0,
+      "telephone": "+7(635) 908-2133"
+    },
+    {
+      "name": "234",
+      "surname": "234",
+      "patronimic": "Алексеевич",
+      "date": "25/12/1987",
+      "email": "1@1.AAA",
+      "id": 9,
+      "type": 0,
+      "telephone": "+7(635) 908-2133"
+    },
+    {
+      "name": "2134",
+      "surname": "1234",
+      "patronimic": "Алексеевич",
+      "date": "25/12/1983",
+      "email": "1@1.AAA",
+      "id": 10,
+      "type": 0,
+      "telephone": "+7(635) 908-2133"
+    },
+    {
+      "name": "121",
+      "surname": "АП",
+      "patronimic": "Алексеевич",
+      "date": "25/12/1989",
+      "email": "1@1.AAA",
+      "id": 11,
+      "type": 0,
+      "telephone": "+7(635) 908-2133"
+    },
+    {
+      "name": "1",
+      "surname": "2654",
+      "patronimic": "Алексеевич",
+      "date": "25/12/1941",
+      "email": "1@1.AAA",
+      "id": 12,
+      "type": 0,
+      "telephone": "+7(635) 908-2133"
+    },
+    {
+      "name": "Продажный",
+      "surname": "Бо",
+      "patronimic": "Узбогоинович",
+      "date": "19/24/1990",
+      "email": "bo@lie.eu",
+      "id": 13,
+      "type": 1,
+      "telephone": "+3(523) 573-4455"
     }
   ]
 }

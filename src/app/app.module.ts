@@ -10,11 +10,16 @@ import { TableWorkersComponent } from './ui/table-workers/table-workers.componen
 import { AddformWorkerComponent } from './ui/addform-worker/addform-worker.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PipePipe } from './shared/pipes/pipe.pipe';
+import { InformationComponent } from './shared/information/information.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { WorkerListComponent } from './ui/worker-list/worker-list.component';
+import { AddFormComponent } from './ui/forms/add-form/add-form.component';
+import { ChangeFormComponent } from './ui/forms/change-form/change-form.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>)=null;
 
 @NgModule({
-  declarations: [AppComponent, TableWorkersComponent, AddformWorkerComponent, PipePipe],
+  declarations: [AppComponent, TableWorkersComponent, AddformWorkerComponent, PipePipe, InformationComponent, WorkerListComponent, AddFormComponent, ChangeFormComponent],
   imports: [
     NgxMaskModule.forRoot(),
     BrowserModule,
@@ -24,6 +29,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>)=null;
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,64 +1,16 @@
-<div class="row mt-1">
-    <div class="col-6" [formGroup]="ChangeForm">
-      <div class="row mt-1">
-       <div class="col-4">
-          <input type="text" class="form-control" placeholder="Имя" formControlName="name"/>
-       </div>
-       <div class="col-4">
-          <input type="text" class="form-control" placeholder="Фамилия" formControlName="surname"/>
-        </div>
-       <div class="col-4">
-          <input type="text" class="form-control" placeholder="Телефон" formControlName="telephone" mask="+0(000) 000-0000" [dropSpecialCharacters]="false"/>
-        </div>
-      </div>
-    </div>
-
-      <div class="col-3">
-        <select class="custom-select" [(ngModel)]="type">
-          <option [ngValue]="myWorkerType.programmer">Программист</option>
-          <option [ngValue]="myWorkerType.designer">Дизайнер</option>
-          <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
-          <option [ngValue]="myWorkerType.manager">Менеджер</option>
-        </select>
-      </div>
-      <div class="col-2">
-          <button class="btn btn-primary btn-sm" (click)="onAddWorker()" [disabled]="ChangeForm.invalid">Добавить</button>
-      </div>
+<div class="row mt-2 mb-3">
+  <h5 class="col-2">Добавление рабочего: </h5>
+  <nav class="mt-0">
+    <button class = "btn btn-primary btn-sm" routerLink="/addForm">Добавить рабочего</button>
+  </nav>
 </div>
+  <router-outlet></router-outlet>
 
-<!------------------------------------------------------------------------->
 
-<!--
-<div class="row mb-3">
-  <div class="col-12">
-    <h5>Добавить сотрудника</h5>
-  </div>
-  <div class="col-4">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Имя"
-      [(ngModel)]="name"
-    />
-  </div>
-  <div class="col-4">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Фамилия"
-      [(ngModel)]="surname"
-    />
-  </div>
-  <div class="col-4">
-    <select class="custom-select" [(ngModel)]="type">
-      <option [ngValue]="myWorkerType.programmer">Программист</option>
-      <option [ngValue]="myWorkerType.designer">Дизайнер</option>
-      <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
-      <option [ngValue]="myWorkerType.manager">Менеджер</option>
-    </select>
-  </div>
-  <div class="col-12 mt-1">
-    <button class="btn btn-outline-primary btn-sm" (click)="onAddWorker()">Добавить</button>
-  </div>
-</div>
--->
+
+  <!--<div class="col-2">
+      <button class="btn btn-primary btn-sm " (click)="onStatus()" *ngIf="addStatus == false" routerLink="/Information">Добавить рабочего</button>
+      <button class="btn btn-primary btn-sm" (click)="onStatus()" *ngIf="addStatus == true">Скрыть</button>
+  </div>-->
+
+

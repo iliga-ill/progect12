@@ -5,60 +5,40 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col" [style.width]="'100px'">#</th>
-            <th scope="col" [style.width]="'100px'">Имя</th>
-            <th scope="col" [style.width]="'150px'">Фамилия</th>
-            <th scope="col" [style.width]="'200px'">Телефон</th>
-            <th scope="col" [style.width]="'50px'"></th>
-            <th scope="col" [style.width]="'50px'"></th>
+            <th scope="col-1">#</th>
+            <th scope="col-3">Имя</th>
+            <th scope="col-3">Фамилия</th>
+            <th scope="col-1">Возраст</th>
+            <th scope="col-1">Отдел</th>
+            <th scope="col-1"></th>
+            <th scope="col-1"></th>
+            <th scope="col-1"></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let worker of workers">
             <!------------------------------------------------------------>
-              <th scope="row">{{ worker.id }}</th>    
-              <ng-container *ngIf="lastId != worker.id">
+            <ng-container *ngIf="CheckHidden(worker.id)">
+              <th scope="row">{{ worker.id }}</th>   
+
+              <ng-container>
                   <td>{{ worker.name }}</td>
                   <td>{{ worker.surname }}</td>
-                  <td>{{ worker.telephone }}</td>
+                  <td>{{ getAge(worker.date) }}</td>
+                  <td>{{ Type(worker.type) }}</td>
                   <td>
-                    <button class="btn btn-outline-info btn-sm" (click)="onChangeWorker(worker.id,worker)">Изменить</button> 
+                    <button class="btn btn-outline-info btn-sm" (click)="onInfo(worker)">Сведения</button> 
                   </td>
-                </ng-container>
-                <ng-container *ngIf="lastId == worker.id" [formGroup]="ChangeForm">
-                  <td><input [style.width]="'100px'" [(ngModel)]="ChangeName" type="text" formControlName="name"/></td>
-                  <td><input [style.width]="'150px'" [(ngModel)]="ChangeSurname" type="text" formControlName="surname"/></td>
-                  <td><input [style.width]="'200px'" [(ngModel)]="CangeTelephone" type="text" formControlName="telephone" mask="+0(000) 000-0000" [dropSpecialCharacters]="false"/></td>
-                  <td>
-                    <button class="btn btn-outline-success btn-sm" (click)="onChangeWorker(worker.id,worker)" [disabled]="ChangeForm.invalid">Принять</button>
-                  </td>
-                </ng-container>
-                <td>
-                  <button class="btn btn-outline-danger btn-sm" (click)="onDeleteWorker(worker.id)">Удалить</button>
-                </td>
-          <!------------------------------->
-          <!--
-            <th scope="row">{{ worker.id }}</th>
-            <td *ngIf="lastId != worker.id">{{ worker.name }}</td>
-            <td *ngIf="lastId != worker.id">{{ worker.surname }}</td>
-            <td *ngIf="lastId != worker.id">
-              <button
-                class="btn btn-outline-success btn-sm"
-                (click)="onChangeWorker(worker.id)"
-              >
-                Редактировать
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-outline-danger btn-sm"
-                (click)="onDeleteWorker(worker.id)"
-              >
-                Удалить
-              </button>
-            </td>
-            -->
-            <!------------------------------------------------>
+              </ng-container>
+
+              <td>
+                <button class="btn btn-outline-warning btn-sm" (click)="onHideWorker(worker.id)">Скрыть</button>
+              </td>
+
+              <td>
+                <button class="btn btn-outline-danger btn-sm" (click)="onDeleteWorker(worker.id)">Удалить</button>
+              </td>
+            </ng-container>
           </tr>
         </tbody>
       </table>

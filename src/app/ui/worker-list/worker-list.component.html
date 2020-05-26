@@ -1,0 +1,83 @@
+<app-addform-worker></app-addform-worker>
+
+<div class="row mt-2 mb-3">
+    <h5 class="col-2">Поиск</h5>
+    <div class="col-4">
+        <button class="btn btn-primary btn-sm " (click)="onButton(5)" *ngIf="ButtonController(5) == true">Расширенный поиск</button>
+        <button class="btn btn-primary btn-sm" (click)="onButton(5)" *ngIf="ButtonController(5) == false">Поиск по Имени/Фамилии</button>
+    </div>
+</div>
+
+    <div class="row mb-3 " [formGroup]="searchStr" *ngIf="ButtonController(5) == false">
+        <div class="row mt-1">
+          <div class="col-3">
+            <input type="text" class="form-control" placeholder="id" formControlName="id"/>
+         </div>
+         <div class="col-3">
+            <input type="text" class="form-control" placeholder="Имя" formControlName="name"/>
+         </div>
+         <div class="col-3">
+            <input type="text" class="form-control" placeholder="Фамилия" formControlName="surname"/>
+          </div>
+         <div class="col-3">
+            <input type="text" class="form-control" placeholder="Отчество" formControlName="patronimic" />
+          </div>
+        </div>
+  
+        <div class="row mt-1">
+          <div class="col-4">
+             <input type="text" class="form-control" placeholder="Возраст" formControlName="date" mask="00" [dropSpecialCharacters]="false"/>
+          </div>
+          <div class="col-4">
+             <input type="text" class="form-control" placeholder="Email" formControlName="email" mask="A*@A*.SSS" [dropSpecialCharacters]="false"/>
+           </div>
+          <div class="col-4">
+             <input type="text" class="form-control" placeholder="Телефон" formControlName="telephone" mask="+0(000) 000-0000" [dropSpecialCharacters]="false" />
+           </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 " [formGroup]="searchStr" *ngIf="ButtonController(5) == true">
+        <div class="col-6">
+            <input type="text" class="form-control" placeholder="Имя Фамилия" formControlName="name">
+        </div>
+    </div>
+
+    <div class="row mt-2 mb-3">
+        <div class="ml-3"><a>Фильтры:</a></div>
+        <div class="col-1 mr-1">
+        <button class="btn btn-primary btn-sm " (click)="onButton(1)" *ngIf="ButtonController(1) == true">IT отдел</button>
+        <button class="btn btn-danger btn-sm" (click)="onButton(1)" *ngIf="ButtonController(1) == false">IT отдел</button>
+        </div>
+        <div class="col-1 mr-1">
+        <button class="btn btn-primary btn-sm" (click)="onButton(2)" *ngIf="ButtonController(2) == true" >Отдел продаж</button>
+        <button class="btn btn-danger btn-sm" (click)="onButton(2)" *ngIf="ButtonController(2) == false">Отдел продаж</button>
+        </div>
+        <div class="col-1 mr-1">
+        <button class="btn btn-primary btn-sm" (click)="onButton(3)" *ngIf="ButtonController(3) == true" >Отдел доставки</button>
+        <button class="btn btn-danger btn-sm" (click)="onButton(3)" *ngIf="ButtonController(3) == false">Отдел доставки</button>
+        </div>
+        <div class="col-2 mr-1">
+        <button class="btn btn-primary btn-sm" (click)="onButton(4)" *ngIf="ButtonController(4) == true" >Юридический <br>отдел</button>
+        <button class="btn btn-danger btn-sm" (click)="onButton(4)" *ngIf="ButtonController(4) == false">Юридический <br>отдел</button>
+        </div>
+        <div class="col-2 mr-1">
+          <button class="btn btn-primary btn-sm" (click)="onButton(6)" *ngIf="ButtonController(6) == 0" >id по <br>возрастанию</button>
+          <button class="btn btn-primary btn-sm" (click)="onButton(6)" *ngIf="ButtonController(6) == 1">id по <br>убыванию</button>
+          <button class="btn btn-primary btn-sm" (click)="onButton(6)" *ngIf="ButtonController(6) == 2">id по <br>возрастанию</button>
+          </div>
+        <div class="col-2 mr-1">
+          <button width="100px" class="btn btn-primary btn-sm" (click)="onButton(7)" *ngIf="ButtonController(7) == 0" >Возраст по возрастанию</button>
+          <button width="100px" class="btn btn-primary btn-sm" (click)="onButton(7)" *ngIf="ButtonController(7) == 1">Возраст по убыванию</button>
+          <button width="100px" class="btn btn-primary btn-sm" (click)="onButton(7)" *ngIf="ButtonController(7) == 2">Сбросить <br>фильтр</button>
+         </div>
+    </div>
+
+  <app-table-workers
+    [title]="'Все сотрудники'"
+    [workers]="getList()|pipe:searchStr.value:ButtonController(6):ButtonController(7)"
+    (deleteWorker)="onDeleteById($event)"
+    (changeWorker)="onChangeById($event)"
+  ></app-table-workers>
+
+

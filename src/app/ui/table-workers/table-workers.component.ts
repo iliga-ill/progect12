@@ -1,16 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MyWorker } from 'src/app/shared/worker.model';
-import { ElementFinder } from 'protractor';
+import { MyWorkerType, MyWorker } from 'src/app/shared/worker.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { worker } from 'cluster';
+import { WorkerService } from 'src/app/shared/worker.service';
+import { RouterLink, Router } from '@angular/router';
+import { AppRoutingModule } from 'src/app/app-routing/app-routing.module';
+
 
 //отключение кнопки при неправильном заполнении
-
-interface ChangeForm {
-  name:string;
-  surname:string;
-  telephone?:string[];
-}
 
 @Component({
   selector: 'app-table-workers',
@@ -21,60 +17,69 @@ interface ChangeForm {
 export class TableWorkersComponent {
   @Input() title: string;
   @Input() workers: MyWorker[] = [];
+  myWorkerType = MyWorkerType;
 
   numb=0;
-  lastId;
-  ChangeName;
-  ChangeSurname;
-  CangeTelephone;
+  type=0;
+
+  Hidden = [];
 
   @Output() deleteWorker = new EventEmitter<number>();
-  @Output() changeWorker = new EventEmitter();
-
-
+  
   ChangeForm: FormGroup;
-  users: ChangeForm[]=[];
 
-  constructor() {
-  this.ChangeForm = new FormGroup({
-    name: new FormControl(null,[Validators.required]),
-    surname: new FormControl(null,[Validators.required]),
-    telephone: new FormControl(null,[Validators.required])
-  });
+  constructor(public worker:WorkerService,public router: Router) {
   }
 
+  async onInfo(worker){
+    await this.worker.set(worker);
+    this.router.navigate(["/ChangeForm"]);
+  }
+
+  Type(type){
+    if (type==0){return "IT отдел"}
+    else if (type==1){return "Отдел продаж"}
+    else if (type==2){return "Отдел доставки"}
+    else if (type==3){return "Юридический отдел"}
+  }
 
   onDeleteWorker(id: number) {
     this.deleteWorker.emit(id);
   }
 
-  /**
-   * при нажатии на кнопку "редактировать", id которой не соответствует id предыдущей нажатой кнопки,
-   * меняет переменную lastId, в зависимости от которой меняется отображение имени и фамилии строчки  
-   * с данным id на input, после чего, при повторном нажатии данной кнопки введенные данные emit-ом 
-   * передаются в корневой компонент, где присваиваются эл-ту массива.
-   */
+  onHideWorker(id: number) {
+    this.Hidden.push(id);
+  }
 
-  onChangeWorker(id: number,worker:any) {
-    if (id!=this.lastId){
-      this.numb=0;
-      this.lastId=id;
+  CheckHidden(id:number){
+    for(let i of this.Hidden){
+      if (i==id){return false}
     }
+    return true
+  }
 
-    if (this.numb==0){
-      this.ChangeName=this.workers[this.workers.findIndex((worker) => worker.id === id)].name;
-      this.ChangeSurname=this.workers[this.workers.findIndex((worker)=> worker.id === id)].surname;
-      this.CangeTelephone=this.workers[this.workers.findIndex((worker)=> worker.id === id)].telephone
-      this.numb+=1;
-    }else if(this.numb==1){
-      let push:MyWorker=this.ChangeForm.value;
-      push.id=id;
-      push.type=worker.type;
-      this.changeWorker.emit(push);
-      this.ChangeForm.reset();
-      this.lastId=null;
-      this.ChangeName=null;
-      this.ChangeSurname=null;
+  getAge(Dr){
+    let date=new Date;
+    let year:number;
+    let month:number;
+    let day:number;
+    let count=0;
+    let i=-1;
+    while (count!=2){
+      i++;
+      if (Dr.slice(i,i+1)=="/"){
+        count++;
+        if (count==1){day=Dr.slice(0,i);}
+        if (count==2){
+          month=Dr.slice(day.toString().length+1,i);
+          year=Dr.slice(i+1,i+5);
+        }
+      }
     }
+    let age=date.getFullYear()-year;
+    if (date.getMonth()+1<month){age--;}
+    else if ((date.getMonth()+1==month)&&(date.getDate()<day)){age--;}
+
+    return age;
   }
 }
